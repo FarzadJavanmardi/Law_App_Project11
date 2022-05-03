@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="صفخه اصلی"
+        android:id="@+id/option_main_page"/>
+
+    <item android:title="اشتراک گزاری"
+        android:id="@+id/option_share"/>
+
+    <item android:title="درباره ما"
+        android:id="@+id/option_about_us"/>
+
+    <item android:title="خروج"
+        android:id="@+id/option_exit"/>
+</menu>

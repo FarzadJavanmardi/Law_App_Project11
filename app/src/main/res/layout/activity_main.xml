@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="@drawable/justice_pic_2">
+
+
+
+
+    <fragment
+        android:id="@+id/up_frag"
+        android:name="com.example.lawapp.UpFragment"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_margin="16dp"
+      ></fragment>
+
+    <fragment
+        android:id="@+id/down_frag"
+        android:name="com.example.lawapp.DownFragment"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_alignBottom="@+id/up_frag"
+        android:layout_margin="16dp"
+       ></fragment>
+
+
+
+</LinearLayout>
