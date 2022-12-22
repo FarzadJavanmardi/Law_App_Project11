@@ -21,32 +21,33 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater =getMenuInflater();
-        inflater.inflate(R.menu.options_menu,menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.option_main_page:
-                Intent intent=new Intent(MainActivity.this,MainActivity.class);
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
                 startActivity(intent);
                 break;
 
             case R.id.option_about_us:
-                Intent intent2=new Intent(MainActivity.this,AboutUsActivity.class);
+                Intent intent2 = new Intent(MainActivity.this, AboutUsActivity.class);
                 startActivity(intent2);
+                finish();
                 break;
 
             case R.id.option_share:
-                Intent sendIntent=new Intent(Intent.ACTION_SEND);
+                Intent sendIntent = new Intent(Intent.ACTION_SEND);
                 sendIntent.setType("text/plain")
-                        .putExtra(Intent.EXTRA_SUBJECT,"قانون مدنی")
-                        .putExtra(Intent.EXTRA_TEXT,"http://www.google.com/");
-                         startActivity(Intent.createChooser(sendIntent,"share"));
+                        .putExtra(Intent.EXTRA_SUBJECT, "قانون مدنی")
+                        .putExtra(Intent.EXTRA_TEXT, "http://www.google.com/");
+                startActivity(Intent.createChooser(sendIntent, "share"));
                 break;
 
             case R.id.option_exit:
@@ -54,6 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-       return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
 }

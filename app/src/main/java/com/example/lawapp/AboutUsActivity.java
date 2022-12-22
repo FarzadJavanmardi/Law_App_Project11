@@ -32,11 +32,13 @@ public class AboutUsActivity extends AppCompatActivity {
             case R.id.option_main_page:
                 Intent intent=new Intent(AboutUsActivity.this,MainActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.option_about_us:
                 Intent intent2=new Intent(AboutUsActivity.this,AboutUsActivity.class);
                 startActivity(intent2);
+                finish();
                 break;
 
             case R.id.option_share:

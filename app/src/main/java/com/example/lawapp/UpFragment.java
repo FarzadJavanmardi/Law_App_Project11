@@ -1,10 +1,6 @@
 package com.example.lawapp;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.hardware.camera2.CameraOfflineSession;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -12,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,9 +18,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.ListFragment;
-
-import java.util.ArrayList;
 
 public class UpFragment extends Fragment {
 
@@ -34,12 +27,14 @@ public class UpFragment extends Fragment {
     ImageButton btnPlay;
     SeekBar sBar;
     String[] s_array;
+    SearchView searchView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.up_fragment, container, false);
         return view;
+
     }
 
     @Override
@@ -49,7 +44,46 @@ public class UpFragment extends Fragment {
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(), R.array.mofad_array, android.R.layout.simple_spinner_item);
 
-        setup();
+        setupViews();
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                try{
+                int n = 0;
+                n = Integer.valueOf(newText) - 1;
+
+                if (newText == null ) {
+
+                    n = 0;
+                    textView.setText(null);
+                    searchView.cancelLongPress();
+                    Toast.makeText(getContext(), "فیلد خالیست!!", Toast.LENGTH_SHORT).show();
+
+                } else if(newText != null && n<=1335 && n>0){
+                    textView.setText(s_array[n]);
+                    Integer n2 = Integer.parseInt(newText);
+                    adapter.getFilter().filter(newText);
+                    adapter.notifyDataSetChanged();
+                }}
+                catch (Exception e){
+                    Toast.makeText(getContext(), "شماره ماده را وارد کنید!", Toast.LENGTH_SHORT).show();
+                }
+
+                return true;
+
+            }
+        });
+
 
         sBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -125,12 +159,15 @@ public class UpFragment extends Fragment {
 
     }
 
-    public void setup() {
+    public void setupViews() {
         listView = getActivity().findViewById(R.id.list_view_mofad);
         textView = getActivity().findViewById(R.id.lbl_show_text);
         player = MediaPlayer.create(getContext(), R.raw.paris_heart);
         btnPlay = (ImageButton) getActivity().findViewById(R.id.btn_play_sound);
         sBar = (SeekBar) getActivity().findViewById(R.id.seek_bar);
+        searchView = getActivity().findViewById(R.id.search_box);
+
     }
+
 
 }
